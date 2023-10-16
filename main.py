@@ -29,15 +29,9 @@ async def eightball(ctx, *, question):
     await ctx.reply(reply)
 
 
-@client.command()
-async def repeat(ctx, *, statement):
-    for i in range(1, 3):
-        await ctx.send(statement)
-
-
 @client.command(aliases=['stockprice', 'share'])
 async def stock(ctx, *, ticker):
-    api_key = 'TKKAFK6QFLQZDZJY'
+    api_key = <YOUR_API_KEY>
 
     price_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker.upper()}&interval=5min&apikey={api_key}'
 
@@ -78,35 +72,6 @@ async def stock(ctx, *, ticker):
 
 
 @client.command()
-async def gay(ctx, member: discord.Member = None):
-    if member is None:
-        member = ctx.author
-
-    name = member.display_name
-    pct = random.randint(1, 100)
-
-    if pct >= 50:
-        embed = discord.Embed(title=f"You are {pct}% gay, {name}", colour=discord.Colour.random())
-        embed.set_image(url='https://cdn.discordapp.com/attachments/1110011085274230847/1120383440429260850/image.png')
-        embed.set_footer(text="Spit or Swallow?")
-
-    else:
-        embed = discord.Embed(title=f"You are {pct}% gay, {name}", colour=discord.Colour.random())
-        embed.set_image(url='https://cdn.discordapp.com/attachments/1110011085274230847/1120458108699934873/image.png')
-        embed.set_footer(text="But you still get no bitches")
-
-    await ctx.send(embed=embed)
-
-
-# @client.command(aliases=['crypto', 'coin'])
-# async def price(ctx, *, ticker):
-
-#     value = coingecko.get_crypto(ticker)
-
-#     await ctx.send(embed=value)
-
-
-@client.command()
 async def pic(ctx, *, query):
     async with aiohttp.ClientSession() as cd:
         async with cd.get(f"https://www.reddit.com/r/{query}.json") as r:
@@ -117,4 +82,4 @@ async def pic(ctx, *, query):
             await ctx.send(embed=embed)
 
 
-client.run('MTExODgwNzU4NjYwNzc0NzExMw.GCKwsK.eX-e8n72qzRmRI0_YNbST3O_2c65Nsj7uYBPHE')
+client.run('<YOUR_BOT_TOKEN>')
